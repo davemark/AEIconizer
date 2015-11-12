@@ -1,9 +1,11 @@
-// Sketch Plugin: AEIconizer (ctrl shift i)
+// Sketch Plugin: AppleWatch_AEIconizer (ctrl shift i)
 // Source: github.com/tadija/AEIconizer
 // Version: 1.0
 
 // iOS icon sizes
-var iconSizes = [NSArray arrayWithObjects: 512, 76, 60, 40, 29, nil];
+// var iconSizes = [NSArray arrayWithObjects: 512, 76, 60, 40, 29, nil];
+var iconSizes = [NSArray arrayWithObjects: 196, 172, 88, 87, 80, 58, 55, 48, nil];
+//196(2x), 172(2x), 88(2x), 87(3x), 80(2x), 58(2x), 55(2x), 48(2x)
 
 // do stuff
 function onRun(context) {
@@ -53,7 +55,7 @@ function removeExistingIcons(context) {
   var loop = [artboards objectEnumerator];
   while (artboard = [loop nextObject]) {
     var name = [artboard name];
-    var artboardNames = [NSArray arrayWithObjects:"Icon-29", "Icon-29@2x", "Icon-29@3x", "Icon-40", "Icon-40@2x", "Icon-40@3x", "Icon-60", "Icon-60@2x", "Icon-60@3x", "Icon-76", "Icon-76@2x", "Icon-76@3x", "iTunesArtwork-512", "iTunesArtwork-512@2x" , nil];
+    var artboardNames = [NSArray arrayWithObjects:"Icon-48@2x", "Icon-55@2x", "Icon-58@2x", "Icon-80@2x", "Icon-87@3x", "Icon-88@2x", "Icon-172@2x", "196@2x" , nil];
     if ([artboardNames containsObject: name]) {
       [[doc currentPage] removeLayer:artboard];
     }
@@ -69,45 +71,23 @@ function iconize(originalIcon) {
 
   var loop = [iconSizes objectEnumerator];
   while (newSize = [loop nextObject]) {
-    if (newSize >= 512) {
-      var iconName = "iTunesArtwork-" + newSize;
-
-      var newX = originalX;
-      var newY = originalY + originalSize + spacing;
-
-      // iTunesArtwork-512@2x
-      var artwork2x = scaleIcon(originalIcon, (newSize * 2), iconName + "@2x");
-      [[artwork2x absoluteRect] setRulerX:newX];
-      [[artwork2x absoluteRect] setRulerY:newY];
-
-      // iTunesArtwork-512
-      var artwork1x = scaleIcon(originalIcon, newSize, iconName);
-      [[artwork1x absoluteRect] setRulerX:newX + (newSize * 2) + spacing];
-      [[artwork1x absoluteRect] setRulerY:newY];
+    var iconName = "Icon-" + newSize; //"Icon-76"
+    if (newSize == 87) {
+      iconName += "@3x";
     } else {
-      var iconName = "Icon-" + newSize;
+      iconName += "@2x";
+    }
 
-      var newX = originalX + (1024 + 512 + (2 * spacing));
+      var newX = originalX + (1024 + 512 + (2 * spacing));//originalX+ 1024+512+80
       var newY = originalY + originalSize + iconsRowHeight + spacing;
-
-      // Icon-Size@3x
-      var icon3x = scaleIcon(originalIcon, newSize * 3, iconName + "@3x");
-      [[icon3x absoluteRect] setRulerX:newX];
-      [[icon3x absoluteRect] setRulerY:newY];
-
-      // Icon-Size@2x
-      var icon2x = scaleIcon(originalIcon, newSize * 2, iconName + "@2x");
-      [[icon2x absoluteRect] setRulerX:newX + (newSize * 3) + spacing];
-      [[icon2x absoluteRect] setRulerY:newY];
 
       // Icon-Size
       var icon1x = scaleIcon(originalIcon, newSize, iconName);
-      [[icon1x absoluteRect] setRulerX:newX + (newSize * 3) + (newSize * 2) + (2 * spacing)];
+      [[icon1x absoluteRect] setRulerX:newX + (2 * spacing)];
       [[icon1x absoluteRect] setRulerY:newY];
 
       // create new row
-      iconsRowHeight += (newSize * 3) + spacing;
-    }
+      iconsRowHeight += newSize + spacing;
   }
 }
 
