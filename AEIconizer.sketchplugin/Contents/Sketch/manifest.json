@@ -1,11 +1,11 @@
 {
-  "author": "tadija",
+  "author": "tadija_DaveMarkEdits",
   "commands": [
     {
       "script": "AEIconizer.cocoascript",
-      "shortcut": "ctrl shift i",
-      "name": "AEIconizer",
-      "identifier": "AEIconizer"
+      "shortcut": "ctrl shift j",
+      "name": "AEIconizer_AppleWatch",
+      "identifier": "com.icons.AppleWatch.AEIconizer"
     }
   ],
   "menu": {
@@ -13,9 +13,9 @@
       "AEIconizer"
     ]
   },
-  "identifier": "net.tadija.sketch.AEIconizer",
-  "version": "2.0",
-  "description": "Makes your life easy when you need to resize artwork for iOS app icon.",
-  "authorEmail": "tadija@me.com",
-  "name": "AEIconizer"
+  "identifier": "com.icons.AppleWatch.AEIconizer",
+  "version": "1.0",
+  "description": "Dave Marks version of AEIconizer, modded for Apple Watch",
+  "authorEmail": "dmark@loopinsight.com",
+  "name": "AEIconizer_AppleWatch"
 }
