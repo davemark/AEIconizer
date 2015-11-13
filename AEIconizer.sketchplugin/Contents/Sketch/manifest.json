@@ -2,8 +2,8 @@
   "author": "tadija_DaveMarkEdits",
   "commands": [
     {
-      "script": "AEIconizer.cocoascript",
-      "shortcut": "ctrl shift j",
+      "script": "AEIconizer_AppleWatch.cocoascript",
+      "shortcut": "ctrl shift g",
       "name": "AEIconizer_AppleWatch",
       "identifier": "com.icons.AppleWatch.AEIconizer"
     }
